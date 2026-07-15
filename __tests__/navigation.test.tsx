@@ -48,14 +48,14 @@ describe('Header', () => {
     renderWithProviders(<Header />, { lang: 'en' });
     expect(
       screen.getByRole('link', { name: 'Docs' }).getAttribute('href')
-    ).toBe('/docs/en/getting-started');
+    ).toBe('/docs/en/aivex-feed/getting-started');
   });
 
   it('Docs nav link uses the TR getting-started route when language is TR', () => {
     renderWithProviders(<Header />, { lang: 'tr' });
     expect(
       screen.getByRole('link', { name: /Belgeler|Docs/i }).getAttribute('href')
-    ).toBe('/docs/tr/getting-started');
+    ).toBe('/docs/tr/aivex-feed/getting-started');
   });
 
   it('renders the Request Access CTA', () => {

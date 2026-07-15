@@ -14,12 +14,12 @@ import { Hero } from '@/components/sections/Hero';
 // ---------------------------------------------------------------------------
 
 describe('Hero CTAs', () => {
-  it('renders the primary Request Research Access button', () => {
+  it('renders the primary Request Product Demo button', () => {
     renderWithProviders(<Hero />);
     expect(screen.getByRole('link', { name: /Request Product Demo/i })).toBeDefined();
   });
 
-  it('Request Research Access routes to /contact', () => {
+  it('Request Product Demo routes to /contact', () => {
     renderWithProviders(<Hero />);
     const link = screen.getByRole('link', { name: /Request Product Demo/i });
     expect(link.getAttribute('href')).toBe('/contact');

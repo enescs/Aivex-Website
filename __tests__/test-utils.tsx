@@ -6,9 +6,6 @@ import { LanguageProvider, type Lang } from '@/contexts/LanguageContext';
 // layout, so a bare render() throws "useLanguage must be used inside
 // LanguageProvider" before the test even gets to its assertions. Tests should
 // use renderWithProviders instead of @testing-library/react's render().
-function AllProviders({ children }: { children: ReactNode }) {
-  return <LanguageProvider>{children}</LanguageProvider>;
-}
 
 interface RenderWithProvidersOptions extends Omit<RenderOptions, 'wrapper'> {
   /** Locale to seed before render. Defaults to 'en' to match the assertion
@@ -20,9 +17,11 @@ export function renderWithProviders(
   ui: ReactElement,
   { lang = 'en', ...options }: RenderWithProvidersOptions = {},
 ): RenderResult {
-  // LanguageProvider reads localStorage in its mount effect; seeding here lets
-  // tests render the EN (or TR) copy without dispatching click events first.
-  window.localStorage.setItem('aivex-lang', lang);
+  // LanguageProvider resolves the language from its initialLang prop (set
+  // server-side from the cookie in the real layout), so pass it explicitly.
+  function AllProviders({ children }: { children: ReactNode }) {
+    return <LanguageProvider initialLang={lang}>{children}</LanguageProvider>;
+  }
   return render(ui, { wrapper: AllProviders, ...options });
 }
 

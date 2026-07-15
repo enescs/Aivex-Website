@@ -2,7 +2,6 @@ export const tr = {
   nav: {
     product: 'Ürün',
     products: 'Ürünler',
-    methodology: 'Metodoloji',
     docs: 'Belgeler',
     blog: 'Blog',
     about: 'Hakkımızda',
@@ -442,74 +441,6 @@ export const tr = {
       cycle: { min: 'dk önce', hr: 'sa önce', none: '—' },
       disclaimer: 'Yalnızca analiz runtime durumu. Çıktılar bilgilendirici araştırma eserleridir, finansal tavsiye değildir.',
       fallbackNote: 'Canlı durum verisi şu anda bağlı değil; demo değerleri gösteriliyor.',
-    },
-  },
-
-  methodology: {
-    badge: 'Piyasa Analizi Çerçevesi',
-    title: 'Metodoloji',
-    subtitle: 'CORE\'un sinyal üretimi, değerlendirme ve yönetişime yaklaşımı — ham veriden denetlenebilir araştırma çıktısına.',
-    sections: {
-      evaluationFirst: {
-        number: '01',
-        title: 'Değerlendirme Öncelikli Tasarım',
-        p1: 'CORE, temel endişe olarak tahmin değil, değerlendirmeyle inşa edilmiştir. Her sinyal modülünün çıktısının yanında bir güven skoru üretmesi zorunludur ve her bileşim adımı aynı girdilerden yeniden üretilebilir olmalıdır.',
-        p2: 'Bu, yanlışlanabilirliğe öncelik verdiğimiz anlamına gelir: gerçeğe karşı değerlendirilemeyen bir sinyal, sinyal değil spekülatiftir. Geri test altyapımız, modül çıktılarının zaman içinde iyi kalibre edilmiş kaldığını doğrular.',
-      },
-      signalLifecycle: {
-        number: '02',
-        title: 'Sinyal Yaşam Döngüsü',
-        steps: ['Veri Alımı', 'Atomik Sinyal', 'Güven Skoru', 'Bileşim', 'Vali Geçişi', 'Emisyon'],
-        annotation: 'Yaşam döngüsündeki her adım kayıt altına alınır. Her çıktıdaki trace_id, tam pipeline çalışmasına, girdi verilerine ve yönetişim kararına bağlar.',
-      },
-      confidenceScoring: {
-        number: '03',
-        title: 'Güven Puanlaması',
-        intro: 'Her atomik sinyal modülü [0, 1] aralığında bir skaler güven değeri üretir. Güven birden fazla faktörden türetilir:',
-        tableHeaders: ['Faktör', 'Açıklama'],
-        factors: [
-          ['Kaynak güvenilirliği', 'Veri kaynağının tarihsel doğruluk skoru'],
-          ['Çapraz modül uyumu', 'Bağımsız sinyal modülleri arasındaki uzlaşı derecesi'],
-          ['Güncellik / tazelik', 'Temel verinin yapılandırılmış eşiğe göre yaşı'],
-          ['Tarihsel kalibrasyon hatası', 'Geçmiş modül çıktılarının gerçek değerden sapması'],
-          ['Yönetişim durumu', 'Valinin bu çıktıyı işaretleyip işaretlemediği veya değiştirip değiştirmediği'],
-        ],
-        note: 'Yapılandırılabilir minimum güven eşiğinin (varsayılan: 0.35) altındaki sinyaller bileşim katmanına ulaşmadan filtrelenir ve düşük kaliteli girdilerin bileşik sinyali kirletmesi önlenir.',
-      },
-      cooldownLogic: {
-        number: '04',
-        title: 'Bekleme Süresi Mantığı',
-        p1: 'Sinyal çalkantısını önlemek için her modül, sinyal yayımladıktan sonra sembol başına bir bekleme süresi uygular. Bekleme süresi boyunca, aynı sembol için yeni sinyaller, güvenleri yapılandırılabilir bir marjla (varsayılan: 0.15) önceki sinyali aşmadıkça bastırılır.',
-        p2: 'Bekleme süreleri uyarlanabilir: daha yüksek volatilite dönemleri, daha hızlı sinyal güncellemelerine izin vermek için bekleme süresi pencerelerini otomatik olarak kısaltır.',
-      },
-      governorGating: {
-        number: '05',
-        title: 'Vali Geçişi',
-        intro: 'Vali, herhangi bir sinyalin API\'ye ulaşmadan önceki son kontrol noktasıdır. Şunları uygular:',
-        gates: [
-          { label: 'Kesin limitler', body: 'Sembol düzeyinde maruz kalma sınırları ve sektör yoğunlaşma limitleri.' },
-          { label: 'Acil durdurma', body: 'Ortam değişkeni aracılığıyla kontrol edilebilen küresel devre dışı bırakma bayrağı — hemen etkili olur.' },
-          { label: 'İnsan geçersiz kılma', body: 'Manuel olarak engellenen semboller yapılandırılabilir bir pencere için dışlanır.' },
-          { label: 'Denetim kaydı', body: 'Her geçiş kararı — izin veya red — tam bağlam ve zaman damgasıyla kaydedilir.' },
-        ],
-      },
-      dataQuality: {
-        number: '06',
-        title: 'Veri Kalitesi İlkeleri',
-        intro: 'CORE alımda sıkı veri kalitesi kontrolleri uygular:',
-        items: [
-          'Tüm zaman damgaları mikrosaniye hassasiyetiyle UTC\'ye normalize edilir',
-          'Fiyat verileri borsa tarafından bildirilen OHLCV sınırlarına karşı doğrulanır',
-          'Haber kaynakları tarihsel güvenilirlik için puanlanır ve içerik hash\'i ile tekilleştirilir',
-          'Eski veriler (yapılandırılabilir eşiği aşan yaş) sessizce kullanılmaz, karantinaya alınır',
-        ],
-      },
-      researchBoundaries: {
-        number: '07',
-        title: 'Araştırma Sınırları',
-        disclaimer1: 'Önemli: AIVEX CORE tarafından üretilen tüm çıktılar yalnızca araştırma ve bilgilendirme amaçlıdır. Finansal, yatırım, ticaret veya başka herhangi bir profesyonel tavsiye niteliği taşımamaktadır. Geçmiş sinyal performansı gelecekteki sonuçları garanti etmez. AIVEX Analytics kayıtlı bir yatırım danışmanı, broker-dealer veya emtia ticaret danışmanı değildir. Kullanıcılar kendi yatırım kararlarından sorumludur.',
-        disclaimer2: 'Sinyal çıktıları hatalar, eksiklikler veya güncel olmayan bilgiler içerebilir. AIVEX Analytics, herhangi bir araştırma çıktısının doğruluğu, eksiksizliği veya zamanında olması konusunda hiçbir beyan veya garanti vermemektedir.',
-      },
     },
   },
 

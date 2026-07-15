@@ -6,6 +6,17 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Removed legacy pages (pre-products restructure).
+      {
+        source: '/product',
+        destination: '/products',
+        permanent: false,
+      },
+      {
+        source: '/methodology',
+        destination: '/products',
+        permanent: false,
+      },
       {
         source: '/docs',
         destination: '/docs/tr/aivex-feed/getting-started',
